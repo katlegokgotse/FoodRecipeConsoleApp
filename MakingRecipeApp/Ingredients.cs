@@ -8,21 +8,24 @@ namespace MakingRecipeApp
 {
     public class Ingredients
     {
-        private string ingredientName, descriptionOfSteps, unitOfMeasurement;
-        int numberOfIngredients, numberOfSteps;
-        double quantity, originalQuantity;
+        private string ingredientName, unitOfMeasurement;
+        private string[] descriptionOfSteps;
+        private int numberOfIngredients, numberOfSteps;
+        private double quantity, originalQuantity;
+        private string recipeName;
 
-        public Ingredients()
+
+        public Ingredients(string recipeName,string ingredientName, string[] descriptionOfSteps, string unitOfMeasurement, int numberOfIngredients, int numberOfSteps, double quantity, double originalQuantity)
         {
-            this.IngredientName = ingredientName;
-            this.DescriptionOfSteps = descriptionOfSteps;
-            this.UnitOfMeasurement = unitOfMeasurement;
-            this.NumberOfIngredients = numberOfIngredients;
-            this.Quantity = quantity;
-            this.OriginalQuantity = quantity;
-            this.NumberOfSteps = numberOfSteps;
+            this.ingredientName = ingredientName;
+            this.descriptionOfSteps = descriptionOfSteps;
+            this.unitOfMeasurement = unitOfMeasurement;
+            this.numberOfIngredients = numberOfIngredients;
+            this.numberOfSteps = numberOfSteps;
+            this.quantity = quantity;
+            this.originalQuantity = originalQuantity;
+            this.recipeName = recipeName;
         }
-
 
         public int NumberOfIngredients
         {
@@ -44,6 +47,9 @@ namespace MakingRecipeApp
             }
             set
             {
+                if (quantity < 0) {
+                    Console.WriteLine("The quantity can not be less than 0");
+                }
                 quantity = value;
             }
         }
@@ -79,10 +85,14 @@ namespace MakingRecipeApp
             }
             set
             {
+                if(ingredientName == null )
+                {
+                    Console.WriteLine("Please enter the ingredient name");
+                }
                 ingredientName = value;
             }
         }
-        public string DescriptionOfSteps
+        public string[] DescriptionOfSteps
         {
             get
             {
@@ -90,6 +100,10 @@ namespace MakingRecipeApp
             }
             set
             {
+                if (descriptionOfSteps == null)
+                {
+                    Console.WriteLine($"Please enter appropriate values for the description");
+                }
                 descriptionOfSteps = value;
             }
         }
@@ -101,7 +115,27 @@ namespace MakingRecipeApp
             }
             set
             {
+                if (unitOfMeasurement == null)
+                {
+                    Console.WriteLine($"Please enter appropriate values for the measuring units");
+                }
                 unitOfMeasurement = value;
+            }
+        }
+
+        public string RecipeName {
+
+            get
+            {
+                return recipeName;
+            }
+            set
+            {
+                if (recipeName == null)
+                {
+                    Console.WriteLine($"Please enter appropriate values for the measuring units");
+                }
+                recipeName = value;
             }
         }
     }
